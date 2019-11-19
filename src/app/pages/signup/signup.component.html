@@ -1,0 +1,80 @@
+<div class="full-register">
+    <div
+        class="register-wrapper"
+        fxLayout="row"
+        fxLayoutAlign="center center"
+    >
+        <mat-card class="box">
+            <mat-card-header>
+                <mat-card-title>Register</mat-card-title>
+            </mat-card-header>
+
+            <form
+                class="example-form"
+                [formGroup]="form"
+            >
+
+                <mat-card-content>
+                    <mat-form-field class="example-full-width">
+                        <input
+                            matInput
+                            placeholder="Username"
+                            formControlName="displayName"
+                        >
+                    </mat-form-field>
+
+                    <mat-form-field class="example-full-width">
+                        <input
+                            matInput
+                            placeholder="Email"
+                            formControlName="email"
+                        >
+                    </mat-form-field>
+
+                    <mat-form-field class="example-full-width">
+                        <input
+                            matInput
+                            placeholder="Password"
+                            formControlName="password"
+                        >
+                    </mat-form-field>
+
+                    <!-- <mat-form-field class="example-full-width">
+                    <mat-label>Choose a role...</mat-label>
+                    <mat-select [(value)]="selected">
+                      <mat-option [value]="roles" *ngFor="let roles of Roles">{{roles}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field> -->
+                    <!-- <div
+                        *ngIf="email.touched && email.invalid"
+                        class="alert alert-danger"
+                    >
+                        {{ email.value }} is not available
+                    </div>
+                    <div
+                        *ngIf="displayName.touched && displayName.invalid"
+                        class="alert alert-danger"
+                    >
+                        {{ displayName.value }} is not available
+                    </div> -->
+
+                    <!-- <div class="alert alert-info" *ngIf="email.pending">
+                      Checking availability of {{ email.value }}
+                    </div> -->
+
+                </mat-card-content>
+
+                <button
+                    mat-raised-button
+                    color="accent"
+                    class="btn-block"
+                    type="submit"
+                >
+                    Register
+                </button>
+                <a mat-button color="primary" class="mt-3" routerLink="/">Home</a>
+            </form>
+        </mat-card>
+    </div>
+</div>
