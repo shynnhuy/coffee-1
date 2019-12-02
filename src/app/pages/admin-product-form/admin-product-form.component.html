@@ -1,0 +1,139 @@
+<div class="row">
+    <div class="col-sm-12 title mb-4">
+        <span>{{ formTitle }}</span>
+    </div>
+    <div class="col-sm-12 col-md-6">
+        <nb-card>
+            <div
+                class="spinner_overlay"
+                *ngIf="isUpload"
+            ></div>
+            <nb-card-body>
+                <mat-spinner *ngIf="isUpload"></mat-spinner>
+                <form
+                    #f="ngForm"
+                    (ngSubmit)="save(f.value)"
+                    *ngIf="!isUpload"
+                >
+                    <input
+                        type="text"
+                        nbInput
+                        fullWidth
+                        shape="semi-round"
+                        placeholder="Name"
+                        name="name"
+                        #name="ngModel"
+                        [(ngModel)]="product.name"
+                    >
+                    <input
+                        type="text"
+                        nbInput
+                        fullWidth
+                        shape="semi-round"
+                        placeholder="Price"
+                        name="price"
+                        #price="ngModel"
+                        [(ngModel)]="product.price"
+                    >
+                    <nb-select
+                        placeholder="Choose brand"
+                        shape="semi-round"
+                        fullWidth
+                        name="brand"
+                        #brand="ngModel"
+                        [(ngModel)]="product.brand"
+                        [(selected)]="product.brand"
+                    >
+                        <nb-option
+                            [value]="b.id"
+                            *ngFor="let b of brands"
+                        >
+                            {{ b.name | titlecase }}
+                        </nb-option>
+                    </nb-select>
+                    <textarea
+                        nbInput
+                        fullWidth
+                        placeholder="Description"
+                        shape="semi-round"
+                        name="description"
+                        #description="ngModel"
+                        [(ngModel)]="product.description"
+                    ></textarea>
+
+                    <input
+                        type="text"
+                        nbInput
+                        fullWidth
+                        shape="semi-round"
+                        placeholder="Image URL"
+                        name="image"
+                        #image="ngModel"
+                        [(ngModel)]="imageUrl"
+                    >
+                    <ng-container class="d-block">
+                        <button
+                            nbButton
+                            type="button"
+                            size="medium"
+                            fullWidth
+                            (click)="image.click()"
+                        >
+                            <nb-icon icon="images"></nb-icon>
+                            Upload image
+                        </button>
+                        <input
+                            type="file"
+                            class="d-none"
+                            (change)="showPreview($event)"
+                            #image
+                            accept="image/*"
+                        >
+                    </ng-container>
+
+                    <button
+                        nbButton
+                        type="submit"
+                        size="medium"
+                        hero
+                        style="width: 48%;"
+                    >
+                        <!-- <nb-icon icon="pen-square"></nb-icon> -->
+                        {{ btnTitle }}
+                    </button>
+                    <button
+                        *ngIf="btnTitle == 'Update'"
+                        nbButton
+                        size="medium"
+                        hero
+                        status="danger"
+                        style="width: 48%; float: right;"
+                        (click)="deleteProduct()"
+                    >
+                        <!-- <nb-icon icon="pen-square"></nb-icon> -->
+                        Delete
+                    </button>
+                </form>
+            </nb-card-body>
+            <!-- <nb-card-footer>
+            </nb-card-footer> -->
+        </nb-card>
+    </div>
+    <div class="col-sm-12 col-md-6">
+        <nb-card>
+            <nb-card-body>
+                <mat-card *ngIf="product.name">
+                    <mat-card-title>{{ product.name }}</mat-card-title>
+                    <mat-card-subtitle>Price: {{ product.price }}</mat-card-subtitle>
+                    <div class="pImage" [style.backgroundImage]="'url(' + imgSrc +')'" mat-card-image></div>
+                    <!-- <img
+                        [src]="imgSrc"
+                        mat-card-image
+                        height="200px"
+                    > -->
+                    <mat-card-content>Description: {{ product.description }}</mat-card-content>
+                </mat-card>
+            </nb-card-body>
+        </nb-card>
+    </div>
+</div>

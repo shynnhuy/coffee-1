@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NbIconLibraries } from '@nebular/theme';
 
 @Component({
   selector: 'app-user-layout',
@@ -7,7 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserLayoutComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private iconLibraries: NbIconLibraries
+  ) {
+    this.iconLibraries.setDefaultPack('duotone');
+  }
 
   ngOnInit() {
   }

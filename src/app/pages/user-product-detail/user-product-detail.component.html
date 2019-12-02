@@ -1,0 +1,47 @@
+<div
+    class="row"
+    *ngIf="product"
+>
+    <div class="col-lg-6 col-md-12">
+        <div
+            mat-card
+            class="productImg"
+            [style.backgroundImage]="'url(' + product.imageUrl + ')'"
+        ></div>
+    </div>
+    <div class="col-lg-6 col-md-12 mx-auto">
+        <mat-card class="example-card">
+            <mat-card-header>
+                <div
+                    mat-card-avatar
+                    class="brandLogo"
+                ></div>
+                <mat-card-title>
+                    <h2>{{product.name | titlecase}}</h2>
+                </mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <h2>
+                    {{ product.price | currency:'VND':'symbol' }}
+                </h2>
+                <h6>Description</h6>
+                <p class="description">{{ product.description }}</p>
+            </mat-card-content>
+            <mat-card-actions>
+                <button
+                    mat-raised-button
+                    color="primary"
+                    style="width: 50%;"
+                    (click)="addToCart()"
+                    *ngIf="cart.getQuantity(product) === 0; else update"
+                >
+                    <nb-icon icon="cart-plus"></nb-icon>
+                </button>
+                <ng-template #update>
+
+                    <button mat-raised-button>Update</button>
+                </ng-template>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

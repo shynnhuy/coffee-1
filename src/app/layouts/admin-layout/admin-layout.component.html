@@ -1,1 +1,25 @@
-<p>admin-layout works!</p>
+<nb-layout
+    [nbSpinner]="!loading"
+    nbSpinnerStatus="danger"
+    windowMode
+>
+    <nb-layout-header fixed>
+        <admin-nav></admin-nav>
+    </nb-layout-header>
+
+    <nb-sidebar
+        class="menu-sidebar"
+        tag="menu-sidebar"
+        [responsive]="true"
+    >
+        <nb-menu [items]="items"></nb-menu>
+    </nb-sidebar>
+
+    <nb-layout-column>
+        <router-outlet></router-outlet>
+    </nb-layout-column>
+
+    <nb-layout-footer>
+        <admin-footer></admin-footer>
+    </nb-layout-footer>
+</nb-layout>

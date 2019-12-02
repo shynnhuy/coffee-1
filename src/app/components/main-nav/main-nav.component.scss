@@ -13,7 +13,7 @@
 .mat-toolbar.mat-primary {
   position: sticky;
   top: 0;
-  z-index: 1;
+  z-index: 1000;
 }
 
 // .hidden {
@@ -34,6 +34,14 @@ div.side {
 
 .mat-drawer-side {
   border-right: none !important;
+}
+
+.mat-expanded {
+  // height: 48px !important;
+}
+
+.content {
+  border-top: 1px solid #ddd !important;
 }
 
 mat-toolbar a {

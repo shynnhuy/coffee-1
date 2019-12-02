@@ -1,0 +1,111 @@
+<nb-card>
+    <nb-card-header>List Products</nb-card-header>
+    <nb-card-body>
+        <div *ngIf="isLoading">
+            <mat-spinner *ngIf="isLoading"></mat-spinner>
+        </div>
+        <div *ngIf="!isLoading">
+            <input
+                nbInput
+                [nbFilterInput]="dataSources"
+                id="search"
+                class="search-input mb-3"
+                placeholder="Search..."
+            >
+
+            <button
+                nbButton
+                size="medium"
+                hero
+                style="float: right;"
+                routerLink="/acp/products/new"
+            >
+
+                <nb-icon icon="plus"></nb-icon>
+                New
+            </button>
+            <table
+                [nbTreeGrid]="dataSources"
+                nbSort
+                (sort)="changeSort($event)"
+                equalColumnsWidth
+            >
+
+                <tbody>
+                    <tr
+                        nbTreeGridHeaderRow
+                        *nbTreeGridHeaderRowDef="allColumns"
+                    ></tr>
+                    <tr
+                        nbTreeGridRow
+                        *nbTreeGridRowDef="let row; columns: allColumns"
+                    ></tr>
+
+                    <ng-container
+                        [nbTreeGridColumnDef]="noColumn"
+                    >
+                        <th
+                            nbTreeGridHeaderCell
+                            *nbTreeGridHeaderCellDef
+                        >
+                            {{noColumn | titlecase}}
+                        </th>
+                        <td
+                            nbTreeGridCell
+                            *nbTreeGridCellDef="let row; index as i"
+                        >
+                            {{i}}
+                        </td>
+
+                    </ng-container>
+
+                    <ng-container
+                        *ngFor="let column of defaultColumns"
+                        [nbTreeGridColumnDef]="column"
+                    >
+                        <th
+                            nbTreeGridHeaderCell
+                            [nbSortHeader]="getDirection(column)"
+                            *nbTreeGridHeaderCellDef
+                        >
+                            {{ column | titlecase }}
+                        </th>
+                        <td
+                            nbTreeGridCell
+                            *nbTreeGridCellDef="let row"
+                        >
+                            {{row.data[column]}}
+                        </td>
+                    </ng-container>
+
+                    <ng-container [nbTreeGridColumnDef]="actionsColumn">
+                        <th
+                            nbTreeGridHeaderCell
+                            *nbTreeGridHeaderCellDef
+                        >
+                            {{actionsColumn | titlecase}}
+                        </th>
+                        <td
+                            nbTreeGridCell
+                            *nbTreeGridCellDef="let row"
+                        >
+                            <button
+                                nbButton
+                                size="medium"
+                                hero
+                                fullWidth
+                                [routerLink]="['/acp/products/', row.data.id]"
+                            >
+
+                                <nb-icon icon="pen-square"></nb-icon>
+                                Edit
+                            </button>
+                        </td>
+
+                    </ng-container>
+                </tbody>
+            </table>
+        </div>
+
+    </nb-card-body>
+</nb-card>
