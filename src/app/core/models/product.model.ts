@@ -9,5 +9,7 @@ export interface AppProduct {
     brand: string,
     name: string,
     price: number,
-    description: string
+    description: string,
+    imageUrl?: string,
+    createdAt?: Date,
 }

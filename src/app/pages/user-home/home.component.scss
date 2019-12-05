@@ -1,0 +1,16 @@
+a.product {
+    text-decoration: none;
+    color: unset;
+    cursor: pointer;
+    mat-card.productCard {
+        text-align: center;
+        div.imgCard {
+            margin-bottom: 16px;
+            width: 100%;
+            height: 180px;
+            background-position: center center;
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+    }
+}

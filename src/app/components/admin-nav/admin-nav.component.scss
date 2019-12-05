@@ -1,0 +1,28 @@
+:host {
+  display: flex;
+  width: 100%;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.nav-f {
+  display: flex;
+  align-items: center;
+  .sidebar-toggle {
+    text-decoration: none;
+    cursor: pointer;
+  
+    nb-icon {
+      font-size: 1.75rem;
+    }
+  }
+  
+  .logo {
+    padding-left: 1rem;
+    font-size: 1.25rem;
+    white-space: nowrap;
+    text-decoration: none;
+  }
+}

@@ -1,0 +1,87 @@
+<div class="container-fluid">
+    <div class="row text-center">
+        <div class="col-lg-8 col-md-6 col-sm-12 mb-2">
+            <mat-card class="productCard">
+                <mat-card-title>
+                    <h2>Order Summary</h2>
+                </mat-card-title>
+                <mat-card-content>
+                    <app-cart-summary [cart]="cart"></app-cart-summary>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="col-lg-4 col-md-5 col-sm-12 mb-2">
+            <mat-card class="productCard">
+                <mat-card-title>
+                    <h2>Billing Address</h2>
+                </mat-card-title>
+                <mat-card-content>
+                    <app-cart-billing-address></app-cart-billing-address>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- <table
+[nbTreeGrid]="dataSources"
+nbSort
+(sort)="changeSort($event)"
+equalColumnsWidth
+*ngIf="!isLoading"
+>
+
+
+<tbody>
+    <tr
+        nbTreeGridHeaderRow
+        *nbTreeGridHeaderRowDef="allColumns"
+    ></tr>
+    <tr
+        nbTreeGridRow
+        *nbTreeGridRowDef="let row; columns: allColumns"
+    ></tr>
+
+
+    <ng-container [nbTreeGridColumnDef]="noColumn">
+        <th
+            nbTreeGridHeaderCell
+            *nbTreeGridHeaderCellDef
+        >
+            {{noColumn | titlecase}}
+        </th>
+        <td
+            nbTreeGridCell
+            *nbTreeGridCellDef="let row; index as i"
+        >
+            {{i}}
+        </td>
+
+
+    </ng-container>
+
+
+    <ng-container
+        *ngFor="let column of defaultColumns"
+        [nbTreeGridColumnDef]="column"
+    >
+        <th
+            nbTreeGridHeaderCell
+            [nbSortHeader]="getDirection(column)"
+            *nbTreeGridHeaderCellDef
+        >
+            {{ column | titlecase }}
+        </th>
+        <td
+            nbTreeGridCell
+            *nbTreeGridCellDef="let row"
+        >
+            {{row.data[column]}}
+        </td>
+    </ng-container>
+
+
+</tbody>
+</table> -->

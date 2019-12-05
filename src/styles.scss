@@ -1,7 +1,48 @@
+// @import "themes";
+// @import "~@nebular/theme/styles/globals";
+
+// @import "~bootstrap/scss/functions";
+// @import "~bootstrap/scss/variables";
+// @import "~bootstrap/scss/mixins";
+// @import "~bootstrap/scss/grid";
+// @import '~@nebular/theme/styles/prebuilt/corporate';
+
+// @import '~@nebular/theme/styles/globals';
+
+// @include nb-install() {
+//   @include nb-theme-global();
+// }
 /* You can add global styles to this file, and also import other style files */
 
-@import 'bootstrap';
-@import '~@shynnhuy/fonticon/css/all.min.css';
+@import "~@nebular/theme/styles/prebuilt/dark.css";
+@import "bootstrap";
+@import "~@shynnhuy/fonticon/css/all.min.css";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+mat-spinner {
+  margin: auto !important;
+}
+
+button:focus {
+  outline: unset !important;
+}
+
+.form-control:focus {
+  box-shadow: unset !important;
+}
+
+.halfWidth {
+  width: 50%;
+}
+
+.fullWidth {
+  width: 100%;
+}

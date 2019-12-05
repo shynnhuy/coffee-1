@@ -1,14 +1,40 @@
 <div class="row">
     <div
-        class="col-sm-12 col-md-6 col-lg-4"
+        class="col-sm-12 col-md-6 col-lg-4 mb-3"
         *ngFor="let product of listProducts"
     >
-        <mat-card>
-            <mat-card-title>{{ product.name }}</mat-card-title>
-            <mat-card-subtitle>Price: {{ product.price }}</mat-card-subtitle>
-            <mat-card-content>
-                {{ product.description }}
-            </mat-card-content>
-        </mat-card>
+        <a
+            class="product"
+            *ngIf="cart; else noCart"
+            [routerLink]="['/home', product.id]"
+        >
+            <mat-card
+                class="productCard"
+                [matBadge]="cart.getQuantity(product)"
+                matBadgePosition="after"
+                matBadgeColor="accent"
+            >
+                <div
+                    class="imgCard"
+                    [style.backgroundImage]="'url(' + product.imageUrl+ ')'"
+                ></div>
+                <mat-card-title>{{ product.name }}</mat-card-title>
+                <mat-card-subtitle>Price: {{ product.price }}</mat-card-subtitle>
+                <mat-card-content>{{ product.description }}</mat-card-content>
+            </mat-card>
+
+            <ng-template #noCart>
+                <mat-card class="productCard">
+                    <div
+                        class="imgCard"
+                        [style.backgroundImage]="'url(' + product.imageUrl+ ')'"
+                    ></div>
+                    <mat-card-title>{{ product.name }}</mat-card-title>
+                    <mat-card-subtitle>Price: {{ product.price }}</mat-card-subtitle>
+                    <mat-card-content>{{ product.description }}</mat-card-content>
+                </mat-card>
+            </ng-template>
+
+        </a>
     </div>
 </div>
