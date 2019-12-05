@@ -1,6 +1,6 @@
 export class CartItemModel {
     id: string;
-    title: string;
+    name: string;
     imageUrl: string;
     price: number;
     brand: string;

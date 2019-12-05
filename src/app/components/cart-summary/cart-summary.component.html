@@ -1,0 +1,63 @@
+<mat-spinner *ngIf="!cart"></mat-spinner>
+<table
+    class="table table-striped table-hover table-borderless table-responsive-md"
+    *ngIf="cart"
+>
+    <thead>
+        <tr>
+            <th
+                scope="col"
+                *ngIf="!isMobile"
+            >
+                #
+            </th>
+            <th scope="col">Image</th>
+            <th scope="col">Name</th>
+            <th
+                scope="col"
+                style="width: 220px;"
+            >
+                Quantity
+            </th>
+            <th scope="col">Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of cart.items; index as index">
+            <td *ngIf="!isMobile">{{ index }}</td>
+            <td
+                class="text-center"
+                align="center"
+            >
+                <div
+                    (click)="router.navigate(['/home', item.id])"
+                    class="thumbnail"
+                    [style.backgroundImage]="'url(' + item.imageUrl + ')'"
+                ></div>
+            </td>
+            <td>{{ item.name }}</td>
+            <td *ngIf="!isMobile">
+                <app-product-quantity
+                    [cart]="cart"
+                    [product]="item"
+                ></app-product-quantity>
+            </td>
+            <td *ngIf="isMobile">{{ cart.getQuantity(item) }}</td>
+            <td>
+                {{ item.totalPrice | currency:'VND':'symbol' }}
+            </td>
+        </tr>
+        <tr *ngIf="cart.items.length == 0">
+            <td colspan="5">No thing in this cart.</td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <th></th>
+        <th></th>
+        <th *ngIf="!isMobile"></th>
+        <th class="text-right">Total:</th>
+        <th>
+            {{ cart.totalPrice | currency:"VND":"symbol" }}
+        </th>
+    </tfoot>
+</table>

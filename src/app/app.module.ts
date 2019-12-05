@@ -25,6 +25,7 @@ import { AdminFooterComponent } from './components/admin-footer/admin-footer.com
 
 import { registerLocaleData } from '@angular/common';
 import localesVi from '@angular/common/locales/vi';
+import { MainHeaderComponent } from './components/main-header/main-header.component';
 
 registerLocaleData(localesVi);
 
@@ -38,6 +39,7 @@ registerLocaleData(localesVi);
     SignupComponent,
     AdminNavComponent,
     AdminFooterComponent,
+    MainHeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,10 +52,10 @@ registerLocaleData(localesVi);
     AngularFirestoreModule,
     AngularFireFunctionsModule,
     AngularFireStorageModule,
-    NbThemeModule.forRoot({ name: 'cosmic' }),
+    NbThemeModule.forRoot({ name: 'dark' }),
     NbSidebarModule.forRoot(),
     NbMenuModule.forRoot(),
-    NebularModule
+    NebularModule,
   ],
   providers: [
     {

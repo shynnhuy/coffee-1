@@ -1,0 +1,25 @@
+<div class="input-group d-flex align-items-center">
+        <div class="mr-2">
+            <button
+                mat-mini-fab
+                color="warn"
+                (click)="remove()"
+            >
+                <i class="fad fa-minus"></i>
+            </button>
+        </div>
+        <input
+            class="form-control input-number"
+            type="text"
+            [value]="cart.getQuantity(product)"
+        >
+        <div class="ml-2">
+            <button
+                mat-mini-fab
+                color="warn"
+                (click)="add()"
+            >
+                <i class="fad fa-plus"></i>
+            </button>
+        </div>
+    </div>

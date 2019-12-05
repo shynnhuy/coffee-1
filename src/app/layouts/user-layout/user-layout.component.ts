@@ -1,5 +1,6 @@
+import { CartComponent } from 'src/app/pages/cart/cart.component';
 import { Component, OnInit } from '@angular/core';
-import { NbIconLibraries } from '@nebular/theme';
+import { NbIconLibraries, NbThemeService } from '@nebular/theme';
 
 @Component({
   selector: 'app-user-layout',
@@ -9,12 +10,13 @@ import { NbIconLibraries } from '@nebular/theme';
 export class UserLayoutComponent implements OnInit {
 
   constructor(
-    private iconLibraries: NbIconLibraries
+    private iconLibraries: NbIconLibraries,
   ) {
     this.iconLibraries.setDefaultPack('duotone');
   }
 
   ngOnInit() {
+    
   }
 
 }

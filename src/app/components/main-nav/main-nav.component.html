@@ -1,101 +1,4 @@
-<mat-toolbar
-    color="primary"
-    class="mat-elevation-z6"
->
-    <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async"
-    >
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-    </button>
-    <a
-        routerLink="/"
-        mat-button
-        color="primary"
-    >
-        eStore
-    </a>
-    <span class="spacer"></span>
-    <ng-container *ngIf="appUser">
-        <div class="navMenu">
-            <a
-                mat-raised-button
-                color="primary"
-                [matBadge]="cart.totalItemsCount"
-                matBadgePosition="before"
-                matBadgeColor="accent"
-                *ngIf="cart"
-            >
-                Cart
-            </a>
-            <div
-                ngbDropdown
-                class="d-inline-block ml-2"
-            >
-                <a
-                    ngbDropdownToggle
-                    mat-button
-                    color="primary"
-                    id="profileDropdown"
-                >
-                    {{ appUser.name }}
-                </a>
-                <div
-                    ngbDropdownMenu
-                    aria-labelledby="profileDropdown"
-                >
-                    <button
-                        mat-button
-                        color="primary"
-                        class="navItem"
-                        ngbDropdownItem
-                        routerLink="/"
-                    >
-                        Profile
-                    </button>
-                    <button
-                        mat-button
-                        color="primary"
-                        class="navItem"
-                        *ngIf="appUser.roles.manager"
-                        ngbDropdownItem
-                        routerLink="/acp"
-                    >
-                        ACP
-                    </button>
-                    <button
-                        mat-button
-                        color="primary"
-                        class="navItem"
-                        ngbDropdownItem
-                        (click)="onLogout()"
-                    >
-                        Logout
-                    </button>
-                </div>
-            </div>
-        </div>
-    </ng-container>
-    <ng-container *ngIf="!appUser">
-        <a
-            mat-button
-            color="primary"
-            routerLink="/login"
-        >
-            Login
-        </a>
-        <a
-            mat-button
-            color="primary"
-            routerLink="/signup"
-        >
-            Signup
-        </a>
-    </ng-container>
-</mat-toolbar>
+<app-main-header [drawer]="drawer"></app-main-header>
 <mat-sidenav-container class="sidenav-container">
     <mat-sidenav
         #drawer
@@ -139,7 +42,7 @@
                                 href="..."
                                 *ngFor="let item of listItem"
                             >
-                                {{ item.name }}
+                                {{ item.name }} - {{ isHandset$ | async}}
                             </a>
                         </mat-nav-list>
                     </ng-template>

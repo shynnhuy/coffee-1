@@ -7,19 +7,32 @@ import { CommonModule } from '@angular/common';
 
 import { UserLayoutRoutingModule } from './user-layout-routing.module';
 import { UserProductDetailComponent } from '../../pages/user-product-detail/user-product-detail.component';
+import { ProductQuantityComponent } from '../../components/product-quantity/product-quantity.component';
+import { CartComponent } from 'src/app/pages/cart/cart.component';
+import { NbThemeModule } from '@nebular/theme';
+import { CartSummaryComponent } from '../../components/cart-summary/cart-summary.component';
+import { CartBillingAddressComponent } from '../../components/cart-billing-address/cart-billing-address.component';
+import { UserOrderSuccessComponent } from '../../pages/user-order-success/user-order-success.component';
+import { UserOrderComponent } from '../../pages/user-order/user-order.component';
 
 
 @NgModule({
   declarations: [
     HomeComponent,
-    UserProductDetailComponent
+    UserProductDetailComponent,
+    CartComponent,
+    ProductQuantityComponent,
+    CartSummaryComponent,
+    CartBillingAddressComponent,
+    UserOrderSuccessComponent,
+    UserOrderComponent
   ],
   imports: [
     CommonModule,
     UserLayoutRoutingModule,
     CoreModule,
     MaterialsModule,
-    NebularModule
+    NebularModule,
   ]
 })
 export class UserLayoutModule { }

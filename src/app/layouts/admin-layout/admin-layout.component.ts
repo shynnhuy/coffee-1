@@ -1,7 +1,7 @@
 import { AppUser } from './../../core/models/user.model';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { NbSidebarService, NbIconLibraries } from '@nebular/theme';
+import { NbSidebarService, NbIconLibraries, NbThemeService } from '@nebular/theme';
 
 @Component({
   selector: 'app-admin-layout',
@@ -28,11 +28,6 @@ export class AdminLayoutComponent implements OnInit {
     this.authService.appUser$.subscribe(user => {
       this.currentAdmin = user;
       this.items = [
-        // {
-        //   title: `${user.name} Profile`,
-        //   icon: { icon: 'person-outline', pack: 'eva' },
-        //   link: [],
-        // },
         {
           title: `Dashboard`,
           icon: { icon: 'cube-outline', pack: 'eva' },
@@ -51,8 +46,16 @@ export class AdminLayoutComponent implements OnInit {
           link: '/acp/products',
           pathMatch: 'prefix',
         },
+        {
+          title: `List Orders`,
+          icon: { icon: 'shopping-bag-outline', pack: 'eva' },
+          link: '/acp/orders',
+          pathMatch: 'prefix',
+        },
       ]
     });
+    // this.themeService.changeTheme('dark');
+    
   }
 
 

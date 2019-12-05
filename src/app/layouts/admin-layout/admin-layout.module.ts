@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 import { AdminLayoutRoutingModule } from './admin-layout-routing.module';
 import { AdminListUsersComponent } from '../../pages/admin-list-users/admin-list-users.component';
 import { AdminProductFormComponent } from '../../pages/admin-product-form/admin-product-form.component';
+import { AdminListOrdersComponent } from '../../pages/admin-list-orders/admin-list-orders.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { AdminProductFormComponent } from '../../pages/admin-product-form/admin-
     AdminDashboardComponent,
     AdminListUsersComponent,
     AdminListProductsComponent,
-    AdminProductFormComponent
+    AdminProductFormComponent,
+    AdminListOrdersComponent
   ],
   imports: [
     CommonModule,

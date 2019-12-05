@@ -3,11 +3,17 @@
         class="col-sm-12 col-md-6 col-lg-4 mb-3"
         *ngFor="let product of listProducts"
     >
-        <a [routerLink]="['/home', product.id]" class="product">
-            <mat-card class="productCard">
-                <!-- <div class="imgDiv">
-                                <img mat-card-image [src]="product.imageUrl" [alt]="product.name">
-                            </div> -->
+        <a
+            class="product"
+            *ngIf="cart; else noCart"
+            [routerLink]="['/home', product.id]"
+        >
+            <mat-card
+                class="productCard"
+                [matBadge]="cart.getQuantity(product)"
+                matBadgePosition="after"
+                matBadgeColor="accent"
+            >
                 <div
                     class="imgCard"
                     [style.backgroundImage]="'url(' + product.imageUrl+ ')'"
@@ -15,15 +21,20 @@
                 <mat-card-title>{{ product.name }}</mat-card-title>
                 <mat-card-subtitle>Price: {{ product.price }}</mat-card-subtitle>
                 <mat-card-content>{{ product.description }}</mat-card-content>
-                <!-- <mat-card-actions>
-                    <button
-                        mat-raised-button
-                        color="primary"
-                    >
-                        <nb-icon icon="cart-plus"></nb-icon>
-                    </button>
-                </mat-card-actions> -->
             </mat-card>
+
+            <ng-template #noCart>
+                <mat-card class="productCard">
+                    <div
+                        class="imgCard"
+                        [style.backgroundImage]="'url(' + product.imageUrl+ ')'"
+                    ></div>
+                    <mat-card-title>{{ product.name }}</mat-card-title>
+                    <mat-card-subtitle>Price: {{ product.price }}</mat-card-subtitle>
+                    <mat-card-content>{{ product.description }}</mat-card-content>
+                </mat-card>
+            </ng-template>
+
         </a>
     </div>
 </div>

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { LocalDataSource } from 'ng2-smart-table';
 import { AppUser } from 'src/app/core/models/user.model';
 import { UserService } from 'src/app/core/services/user.service';
@@ -8,7 +9,9 @@ import { UserService } from 'src/app/core/services/user.service';
   templateUrl: './admin-list-users.component.html',
   styleUrls: ['./admin-list-users.component.scss']
 })
-export class AdminListUsersComponent implements OnInit {
+export class AdminListUsersComponent implements OnInit, OnDestroy {
+
+  userSub: Subscription;
 
   settings = {
     add: {
@@ -51,8 +54,6 @@ export class AdminListUsersComponent implements OnInit {
   users: AppUser[];
 
   constructor(private userService: UserService) {
-    // const data = this.service.getData();
-    // this.source.load(data);
   }
 
   onDeleteConfirm(event): void {
@@ -63,11 +64,14 @@ export class AdminListUsersComponent implements OnInit {
     }
   }
   ngOnInit() {
-    this.userService.getAll().subscribe(list => {
-      // console.log(list)
+    this.userSub = this.userService.getAll().subscribe(list => {
       this.users = list;
       this.source.load(list)
     });
+  }
+
+  ngOnDestroy() {
+    this.userSub.unsubscribe();
   }
 
 }

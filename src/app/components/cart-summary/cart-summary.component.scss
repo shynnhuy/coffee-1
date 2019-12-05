@@ -1,0 +1,27 @@
+:host {
+  .thumbnail {
+    width: 60px;
+    height: 80px;
+    // border-radius: 100%;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center center;
+    margin: 0 auto
+  }
+
+  // .table > tbody > a {
+  //   cursor: pointer;
+  //   text-decoration: none;
+  //   color: unset;
+  // }
+
+  .table > tbody > tr {
+    cursor: pointer;
+  }
+
+  .table > tbody > tr > td {
+    vertical-align: middle;
+  }
+
+}
+

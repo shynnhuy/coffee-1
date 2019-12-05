@@ -1,24 +1,21 @@
+import { TreeNode } from './../../core/models/treenode.model';
 import { map } from 'rxjs/operators';
 import { ProductService } from './../../core/services/product.service';
 import { AppProduct } from './../../core/models/product.model';
-import { Component, OnInit, Input } from '@angular/core';
-import { MatTableDataSource } from '@angular/material';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { NbTreeGridDataSource, NbSortDirection, NbTreeGridDataSourceBuilder, NbSortRequest } from '@nebular/theme';
-
-interface TreeNode<T> {
-  data: T;
-  children?: TreeNode<T>[];
-  expanded?: boolean;
-}
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-admin-list-products',
   templateUrl: './admin-list-products.component.html',
   styleUrls: ['./admin-list-products.component.scss']
 })
-export class AdminListProductsComponent implements OnInit {
+export class AdminListProductsComponent implements OnInit, OnDestroy {
 
   isLoading = true;
+
+  productSub: Subscription;
 
   defaultColumns = ['name', 'price', 'description'];
   actionsColumn = "actions";
@@ -32,7 +29,8 @@ export class AdminListProductsComponent implements OnInit {
 
   data: TreeNode<AppProduct>[] = [];
 
-  constructor(private productService: ProductService,
+  constructor(
+    private productService: ProductService,
     private dataSourceBuilder: NbTreeGridDataSourceBuilder<AppProduct>
   ) { }
 
@@ -42,7 +40,7 @@ export class AdminListProductsComponent implements OnInit {
 
   init() {
     this.data = [];
-    this.productService.getProducts().pipe(map(val => {
+    this.productSub = this.productService.getProducts().pipe(map(val => {
       val.map(v => {
         this.data.push({
           data: v
@@ -64,6 +62,10 @@ export class AdminListProductsComponent implements OnInit {
       return this.sortDirection;
     }
     return NbSortDirection.NONE;
+  }
+
+  ngOnDestroy() {
+    this.productSub.unsubscribe();
   }
 
 }

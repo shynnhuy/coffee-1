@@ -1,0 +1,107 @@
+<nb-card>
+    <nb-card-header>List Orders</nb-card-header>
+    <nb-card-body>
+        <div *ngIf="isLoading">
+            <mat-spinner *ngIf="isLoading"></mat-spinner>
+        </div>
+        <div *ngIf="!isLoading">
+            <input
+                nbInput
+                [nbFilterInput]="dataSources"
+                id="search"
+                class="search-input mb-3"
+                placeholder="Search..."
+            >
+            <table
+                [nbTreeGrid]="dataSources"
+                nbSort
+                (sort)="changeSort($event)"
+                equalColumnsWidth
+            >
+
+                <tbody>
+                    <tr
+                        nbTreeGridHeaderRow
+                        *nbTreeGridHeaderRowDef="allColumns"
+                    ></tr>
+                    <tr
+                        nbTreeGridRow
+                        *nbTreeGridRowDef="let row; columns: allColumns"
+                    ></tr>
+                    <ng-container nbTreeGridColumnDef="userId">
+                        <th
+                            nbTreeGridHeaderCell
+                            *nbTreeGridHeaderCellDef
+                        >
+                            User
+                        </th>
+                        <td
+                            nbTreeGridCell
+                            *nbTreeGridCellDef="let row"
+                        >
+                            {{ getUserName(row.data.userId) }}
+                        </td>
+                    </ng-container>
+                    <ng-container nbTreeGridColumnDef="datePlaced">
+                        <th
+                            nbTreeGridHeaderCell
+                            *nbTreeGridHeaderCellDef
+                        >
+                            Date
+                        </th>
+                        <td
+                            nbTreeGridCell
+                            *nbTreeGridCellDef="let row"
+                        >
+                            <!-- {{ getDate(row.data.datePlaced) }} -->
+                            {{ row.data.datePlaced | date }}
+                        </td>
+                    </ng-container>
+                    <ng-container nbTreeGridColumnDef="status">
+                        <th
+                            nbTreeGridHeaderCell
+                            *nbTreeGridHeaderCellDef
+                        >
+                            Order Status
+                        </th>
+                        <td
+                            nbTreeGridCell
+                            *nbTreeGridCellDef="let row"
+                        >
+                            {{ row.data.status }}
+                        </td>
+                    </ng-container>
+                    <ng-container nbTreeGridColumnDef="actions">
+                        <th
+                            nbTreeGridHeaderCell
+                            *nbTreeGridHeaderCellDef
+                        >
+                            Actions
+                        </th>
+                        <td
+                            nbTreeGridCell
+                            *nbTreeGridCellDef="let row"
+                        >
+                            <button
+                                nbButton
+                                status="success"
+                                class="mr-1"
+                                (click)="changeStatus(row.data.orderId, row.data.status)"
+                            >
+                                Approve
+                            </button>
+                            <button
+                                nbButton
+                                status="danger"
+                            >
+                                Delete
+                            </button>
+                        </td>
+                    </ng-container>
+
+                </tbody>
+            </table>
+        </div>
+
+    </nb-card-body>
+</nb-card>

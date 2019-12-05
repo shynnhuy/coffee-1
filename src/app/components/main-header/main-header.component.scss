@@ -1,0 +1,31 @@
+.mat-toolbar.mat-primary {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+mat-toolbar a {
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+}
+
+mat-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 8px 16px;
+
+  span.spacer {
+    flex-grow: 1;
+  }
+
+  a {
+    cursor: pointer;
+  }
+}
+
+.navItem {
+  cursor: pointer;
+  display: block;
+}

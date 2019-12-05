@@ -7,6 +7,9 @@ import { Router } from '@angular/router';
 import { take, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { CartModel } from '../models/cart.model';
+import { HttpClient } from '@angular/common/http';
+
+const PROVINCES = './assets/data/provinces.json';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +19,7 @@ export class CartService {
   constructor(
     private db: AngularFirestore,
     private userService: UserService,
-    private router: Router,
+    private http: HttpClient
   ) {
   }
 
@@ -30,6 +33,18 @@ export class CartService {
     return result.id
   }
 
+  async getOrCreateCart(): Promise<string> {
+    let cartId = localStorage.getItem('cartId');
+    if (cartId) return cartId;
+
+    const user = this.userService.getUser();
+    if (user) {
+      let res = await this.create()
+      localStorage.setItem('cartId', res);
+      return res
+    }
+  }
+
   async getCart(): Promise<Observable<CartModel>> {
     let cartId = await this.getOrCreateCart();
     return this.db.doc(`carts/${cartId}`).collection<CartItemModel>('items').valueChanges()
@@ -41,18 +56,6 @@ export class CartService {
 
   private getItems(cartId: string, productId: string) {
     return this.db.doc(`carts/${cartId}/items/${productId}`)
-  }
-
-  async getOrCreateCart(): Promise<string> {
-    let cartId = localStorage.getItem('cartId');
-    if (cartId) return cartId;
-
-    const user = this.userService.getUser();
-    if (user) {
-      let res = await this.create()
-      localStorage.setItem('cartId', res);
-      return res
-    }
   }
 
   private async updateItemQuantity(product: AppProduct, change: number) {
@@ -94,5 +97,18 @@ export class CartService {
   removeFormCart(product: AppProduct) {
     this.updateItemQuantity(product, -1);
     return true;
+  }
+
+  async clearCart() {
+    let cartId = await this.getOrCreateCart();
+    let batch = this.db.firestore.batch();
+    let ref = await this.db.doc(`carts/${cartId}`).collection('items').ref.get();
+    ref.forEach(doc => batch.delete(doc.ref));
+    return batch.commit();
+  }
+
+
+  getProvinces() {
+    return this.http.get(PROVINCES);
   }
 }
