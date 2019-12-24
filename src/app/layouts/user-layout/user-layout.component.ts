@@ -11,11 +11,13 @@ export class UserLayoutComponent implements OnInit {
 
   constructor(
     private iconLibraries: NbIconLibraries,
+    private nb: NbThemeService
   ) {
     this.iconLibraries.setDefaultPack('duotone');
   }
 
   ngOnInit() {
+    this.nb.changeTheme('corporate')
     
   }
 

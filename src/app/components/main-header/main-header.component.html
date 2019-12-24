@@ -2,99 +2,104 @@
     color="primary"
     class="mat-elevation-z6"
 >
-    <button
-        type="button"
-        aria-label="Toggle sidenav"
-        mat-icon-button
-        (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async"
-    >
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-    </button>
-    <a
-        routerLink="/"
-        mat-button
-        color="primary"
-    >
-        <i class="fad fa-cannabis mx-1"></i>
-        eStore
-    </a>
-    <span class="spacer"></span>
-    <ng-container *ngIf="appUser">
-        <div class="navMenu">
+    <div class="d-flex justify-content-around align-items-center w-100">
+        <div>
+            <button
+                type="button"
+                aria-label="Toggle sidenav"
+                mat-icon-button
+                (click)="drawer.toggle()"
+                *ngIf="isHandset$ | async"
+            >
+                <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+            </button>
             <a
-                mat-raised-button
+                routerLink="/"
+                mat-button
                 color="primary"
-                [matBadge]="cart.totalItemsCount"
-                matBadgePosition="before"
-                matBadgeColor="accent"
-                *ngIf="cart"
-                routerLink="/cart"
             >
-                <i class="fad fa-shopping-cart"></i>
+                <i class="fad fa-cannabis mx-1"></i>
+                eStore
             </a>
-            <div
-                ngbDropdown
-                class="d-inline-block ml-2"
-            >
+        </div>
+
+        <!-- <span class="spacer flex-grow-1"></span> -->
+        <ng-container *ngIf="appUser">
+            <div class="navMenu">
                 <a
-                    ngbDropdownToggle
                     mat-raised-button
                     color="primary"
-                    id="profileDropdown"
+                    [matBadge]="cart.totalItemsCount"
+                    matBadgePosition="before"
+                    matBadgeColor="accent"
+                    *ngIf="cart"
+                    routerLink="/cart"
                 >
-                    {{ appUser.name }}
+                    <i class="fad fa-shopping-cart"></i>
                 </a>
                 <div
-                    ngbDropdownMenu
-                    aria-labelledby="profileDropdown"
+                    ngbDropdown
+                    class="d-inline-block ml-2"
                 >
-                    <button
-                        mat-button
+                    <a
+                        ngbDropdownToggle
+                        mat-raised-button
                         color="primary"
-                        class="navItem"
-                        ngbDropdownItem
-                        routerLink="/"
+                        id="profileDropdown"
                     >
-                        Profile
-                    </button>
-                    <button
-                        mat-button
-                        color="primary"
-                        class="navItem"
-                        *ngIf="appUser.roles.manager"
-                        ngbDropdownItem
-                        routerLink="/acp"
+                        {{ appUser.name }}
+                    </a>
+                    <div
+                        ngbDropdownMenu
+                        aria-labelledby="profileDropdown"
                     >
-                        ACP
-                    </button>
-                    <button
-                        mat-button
-                        color="primary"
-                        class="navItem"
-                        ngbDropdownItem
-                        (click)="onLogout()"
-                    >
-                        Logout
-                    </button>
+                        <button
+                            mat-button
+                            color="primary"
+                            class="navItem"
+                            ngbDropdownItem
+                            routerLink="/"
+                        >
+                            Profile
+                        </button>
+                        <button
+                            mat-button
+                            color="primary"
+                            class="navItem"
+                            *ngIf="appUser.roles.manager"
+                            ngbDropdownItem
+                            routerLink="/acp"
+                        >
+                            ACP
+                        </button>
+                        <button
+                            mat-button
+                            color="primary"
+                            class="navItem"
+                            ngbDropdownItem
+                            (click)="onLogout()"
+                        >
+                            Logout
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
-    </ng-container>
-    <ng-container *ngIf="!appUser">
-        <a
-            mat-button
-            color="primary"
-            routerLink="/login"
-        >
-            Login
-        </a>
-        <a
-            mat-button
-            color="primary"
-            routerLink="/signup"
-        >
-            Signup
-        </a>
-    </ng-container>
+        </ng-container>
+        <ng-container *ngIf="!appUser">
+            <a
+                mat-button
+                color="primary"
+                routerLink="/login"
+            >
+                Login
+            </a>
+            <a
+                mat-button
+                color="primary"
+                routerLink="/signup"
+            >
+                Signup
+            </a>
+        </ng-container>
+    </div>
 </mat-toolbar>

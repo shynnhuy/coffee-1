@@ -39,7 +39,7 @@
                             (click)="addToCart()"
                             *ngIf="cart.getQuantity(product) === 0; else updateQuantity"
                         >
-                            <nb-icon icon="cart-plus"></nb-icon>
+                            <i class="fad fa-cart-plus"></i>
                         </button>
                         <ng-template #updateQuantity>
                             <app-product-quantity

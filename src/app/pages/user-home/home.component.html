@@ -5,7 +5,7 @@
     >
         <a
             class="product"
-            *ngIf="cart; else noCart"
+            *ngIf="cart"
             [routerLink]="['/home', product.id]"
         >
             <mat-card
@@ -23,7 +23,7 @@
                 <mat-card-content>{{ product.description }}</mat-card-content>
             </mat-card>
 
-            <ng-template #noCart>
+            <!-- <ng-container #noCart>
                 <mat-card class="productCard">
                     <div
                         class="imgCard"
@@ -33,7 +33,7 @@
                     <mat-card-subtitle>Price: {{ product.price }}</mat-card-subtitle>
                     <mat-card-content>{{ product.description }}</mat-card-content>
                 </mat-card>
-            </ng-template>
+            </ng-container> -->
 
         </a>
     </div>
